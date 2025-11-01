@@ -5,31 +5,17 @@ const app = express();
 import dotenv from "dotenv";
 dotenv.config();
 
-
-import connetDB from "./db/index.js";   
-connetDB();     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+import connetDB from "./db/index.js";
+connetDB()
+  .then(() => {
+    app.listen(process.env.PORT || 8000, () => {
+      console.log(`🚀 Server running on port ${process.env.PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.log("❌ Error while connecting to the database:", error);
+    throw error;
+  });
 
 /*
 const connectDB = async () => {
