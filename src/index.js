@@ -1,12 +1,13 @@
 import mongoose from "mongoose";
-import { DB_NAME } from "./constants.js";
+// import { DB_NAME } from "./constants.js"; as we don't use DB_NAME in this file, we can directly use it in the connection string in db/index.js
 import express from "express";
-const app = express();
+// const app = express();
+import app from "./app.js"; // as we are handling all app related configurations in app.js, we can directly import the configured app here
 import dotenv from "dotenv";
 dotenv.config();
 
-import connetDB from "./db/index.js";
-connetDB()
+import connectDB from "./db/index.js";
+connectDB()
   .then(() => {
     app.listen(process.env.PORT || 8000, () => {
       console.log(`🚀 Server running on port ${process.env.PORT}`);
