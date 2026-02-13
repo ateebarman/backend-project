@@ -1,12 +1,33 @@
-const DummyAsyncHandler = (requestHandler) => {
-  (req, res, next) => {
+const asyncHandler = (requestHandler) => {
+   return (req, res, next) => {
     Promise.resolve(requestHandler(req, res, next)).catch((err) => next(err));
   };
 };
 
-const asyncHandler = (func) => async (req, res, next) => {
+export { asyncHandler };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const dummyAsyncHandler = (func) => async (req, res, next) => {
   try {
-    await func(req, res, next);
+     await func(req, res, next);
   } catch (error) {
     res.status(error.code || 500).json({
       sucess: false,
@@ -14,7 +35,7 @@ const asyncHandler = (func) => async (req, res, next) => {
     });
   }
 };
-export { asyncHandler };
+export { dummyAsyncHandler };
 
 
 /*

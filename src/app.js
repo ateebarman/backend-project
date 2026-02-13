@@ -17,5 +17,17 @@ app.use(express.static("public"));
 
 app.use(cookoieParser());
 
+// routes import
+import userRoutes from "./routes/user.routes.js"
+
+
+// routes declaration
+
+app.use("/api/v1/users", userRoutes); // api , version , route
+
+
+
+
+
 export default app;
 // can also like export { app }
